@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sopigt — Aldrig mer missa sophämtningen</title>
 <link rel="icon" type="image/png" href="favicon.png" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 <meta name="description" content="Sopigt påminner dig kvällen innan sopbilen kommer, så rätt tunna alltid står framme. Lanseras snart för iPhone och Android." />
+<title>Sopigt — Aldrig mer missa sophämtningen</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Patrick+Hand&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -43,7 +43,7 @@
 
   /* ── nav ── */
   nav {
-    display: flex; align-items: center; justify-content: space-between;
+    display: flex; align-items: center; justify-content: center;
     padding: 28px 0 16px;
   }
   .logo {
@@ -53,7 +53,7 @@
     color: var(--ink);
     text-decoration: none;
   }
-  .logo .logo-bag { width: 60px; height: 72px; display: inline-block; transform: rotate(6deg); }
+  .logo .logo-bag { width: 120px; height: 144px; display: inline-block; transform: rotate(6deg); }
   .nav-links { display: flex; align-items: center; gap: 32px; }
   .nav-links a { font-size: 22px; font-weight: 600; color: var(--ink); text-decoration: none; opacity: 0.85; }
   .nav-links a:hover { opacity: 1; }
@@ -167,7 +167,7 @@
   .coming-soon .label {
     position: relative; z-index: 1;
   }
-  .qr-pair { position: relative; }
+  .qr-pair { position: relative; width: fit-content; }
   .closer .coming-soon { transform: translate(-50%, -50%) rotate(-1deg); }
 
   /* show QR on desktop, badges on mobile */
@@ -267,8 +267,19 @@
     display: flex; align-items: center; gap: 8px;
   }
 
-  /* ── divider squiggle ── */
-  .squiggle { width: 100%; height: 18px; display: block; opacity: 0.4; margin: 0 auto; max-width: 480px; }
+  /* ── road strip (full-width squiggle + truck driving along it) ── */
+  .road-strip {
+    position: relative;
+    width: 100%;
+    height: 110px;
+    overflow: hidden;
+    margin: 16px 0 -10px;
+  }
+  .road-strip .squiggle {
+    position: absolute; left: 0; right: 0; bottom: 12px;
+    width: 100%; max-width: none; margin: 0;
+    height: 18px; display: block; opacity: 0.55;
+  }
 
   /* ── steps ── */
   .steps {
@@ -375,16 +386,23 @@
     .page { padding: 0 20px; }
   }
 
-  /* truck drive animation in the closer */
+  /* truck drive animation along the road strip */
   @keyframes drive {
     0% { transform: translateX(100vw); }
-    50% { transform: translateX(-300px); }
-    100% { transform: translateX(-300px); }
+    55% { transform: translateX(-560px); }
+    100% { transform: translateX(-560px); }
   }
   .driving-truck {
-    position: absolute; bottom: 0; left: 0;
-    animation: drive 12s linear infinite;
-    opacity: 0.85;
+    position: absolute; bottom: 6px; left: 0;
+    display: flex; align-items: flex-end; gap: 22px;
+    white-space: nowrap;
+    animation: drive 18s linear infinite;
+    will-change: transform;
+  }
+  .driving-truck .trailing {
+    font-family: var(--font-hand); font-weight: 700;
+    color: var(--rust); font-size: 38px; line-height: 1;
+    padding-bottom: 30px;
   }
 </style>
 </head>
@@ -397,6 +415,10 @@
       <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="3" />
       <feDisplacementMap in="SourceGraphic" scale="1.2" />
     </filter>
+    <filter id="truck-wobble" x="-8%" y="-8%" width="116%" height="116%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="3" seed="11" />
+      <feDisplacementMap in="SourceGraphic" scale="3.2" />
+    </filter>
   </defs>
 </svg>
 
@@ -404,7 +426,7 @@
 <div class="page">
   <nav>
     <a class="logo" href="#">
-      <span style="font-size: 88px">Sopigt</span>
+      <span style="font-size: 176px">Sopigt</span>
       <span class="logo-bag">
         <svg viewBox="0 0 80 92" width="100%" height="100%">
           <g filter="url(#wobble)" fill="none" stroke="#2d251f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
@@ -429,9 +451,9 @@
   <section class="hero">
     <div class="hero-text">
       <div class="eyebrow">Hej Stockholm 👋</div>
-      <h1>Missa aldrig<br/><span class="accent">sophämtningen</span> igen</h1>
+      <h1>Missa aldrig<br/><span class="accent">sophämtningen</span> igen!</h1>
       <div class="lead">
-        <p class="muted">I Stockholm har sophämtningen blivit lite mer komplicerad. Olika tunnor töms olika veckor — och det är lätt att glömma.</p>
+        <p class="muted">När kommer sopbilen? Ja vem vet, i Stockholm har sophämtningen blivit lite mer komplicerad… Olika tunnor töms olika veckor och på olika veckodagar. Inte lätt ha koll på.</p>
         <p>Sopigt påminner dig kvällen innan, så att rätt tunna alltid står framme när sopbilen kommer.</p>
         <ul class="ingas">
           <li>Inga scheman att hålla koll på.</li>
@@ -583,7 +605,7 @@
             <div class="ground"></div>
             <div class="msg">Trevlig<br/>vecka!</div>
             <svg width="78" height="46" viewBox="0 0 212 120">
-              <g filter="url(#wobble)" fill="none" stroke="#2d251f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <g filter="url(#truck-wobble)" fill="none" stroke="#2d251f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M 38 96 L 38 58 Q 38 54, 42 54 L 50 54 L 58 36 L 78 36 L 78 96"/>
                 <path d="M 58 56 L 64 42 L 74 42 L 74 56 Z" stroke-width="1.4"/>
                 <path d="M 78 96 L 78 30 L 184 30 L 184 96" stroke="#b8593a" stroke-width="2.1"/>
@@ -614,9 +636,34 @@
   </section>
 </div>
 
-<svg class="squiggle" viewBox="0 0 480 14" preserveAspectRatio="none">
-  <path d="M 4 7 Q 60 2, 120 8 T 240 7 T 360 7 T 476 7" fill="none" stroke="#2d251f" stroke-width="1.5" stroke-linecap="round"/>
-</svg>
+<div class="road-strip">
+  <svg class="squiggle" viewBox="0 0 480 14" preserveAspectRatio="none">
+    <path d="M 4 7 Q 60 6.7, 120 7 T 240 7.1 T 360 6.9 T 476 7" fill="none" stroke="#2d251f" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
+  <div class="driving-truck" aria-hidden="true">
+    <svg width="180" height="100" viewBox="0 0 212 120">
+      <g filter="url(#truck-wobble)" fill="none" stroke="#2d251f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M 38 96 L 38 58 Q 38 54, 42 54 L 50 54 L 58 36 L 78 36 L 78 96"/>
+        <path d="M 58 56 L 64 42 L 74 42 L 74 56 Z" stroke-width="1.4"/>
+        <path d="M 78 96 L 78 30 L 184 30 L 184 96" stroke="#b8593a" stroke-width="2.1"/>
+        <path d="M 88 30 L 88 96 M 110 30 L 110 96 M 154 30 L 154 96 M 170 30 L 170 96" stroke="#b8593a"/>
+        <g transform="translate(131 62)" stroke="#2d251f" stroke-width="1.8">
+          <g transform="translate(0 -9)"><path d="M -7 0 L 7 0"/><path d="M 3 -4 L 7 0 L 3 4"/></g>
+          <g transform="translate(8 5) rotate(120)"><path d="M -7 0 L 7 0"/><path d="M 3 -4 L 7 0 L 3 4"/></g>
+          <g transform="translate(-8 5) rotate(240)"><path d="M -7 0 L 7 0"/><path d="M 3 -4 L 7 0 L 3 4"/></g>
+        </g>
+        <path d="M 184 70 L 196 70 L 196 96 L 184 96"/>
+        <circle cx="50" cy="98" r="9"/>
+        <circle cx="50" cy="98" r="3" stroke-width="1.2"/>
+        <circle cx="120" cy="98" r="9"/>
+        <circle cx="120" cy="98" r="3" stroke-width="1.2"/>
+        <circle cx="148" cy="98" r="9"/>
+        <circle cx="148" cy="98" r="3" stroke-width="1.2"/>
+      </g>
+    </svg>
+    <span class="trailing">Appen kommer snart!!!</span>
+  </div>
+</div>
 
 <!-- ── STEPS ── -->
 <div class="page">
@@ -674,7 +721,7 @@
         <div class="illo">
           <!-- truck -->
           <svg width="170" height="100" viewBox="0 0 212 120">
-            <g filter="url(#wobble)" fill="none" stroke="#2d251f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <g filter="url(#truck-wobble)" fill="none" stroke="#2d251f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M 6 102 C 60 100, 140 104, 208 101" stroke-width="1.4"/>
               <path d="M 38 96 L 38 58 Q 38 54, 42 54 L 50 54 L 58 36 L 78 36 L 78 96"/>
               <path d="M 58 56 L 64 42 L 74 42 L 74 56 Z" stroke-width="1.4"/>
@@ -770,30 +817,6 @@
       </a>
     </div>
 
-    <!-- driving truck behind everything -->
-    <div class="driving-truck" aria-hidden="true">
-      <svg width="180" height="100" viewBox="0 0 212 120">
-        <g filter="url(#wobble)" fill="none" stroke="#2d251f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M 6 102 C 60 100, 140 104, 208 101" stroke-width="1.4"/>
-          <path d="M 38 96 L 38 58 Q 38 54, 42 54 L 50 54 L 58 36 L 78 36 L 78 96"/>
-          <path d="M 58 56 L 64 42 L 74 42 L 74 56 Z" stroke-width="1.4"/>
-          <path d="M 78 96 L 78 30 L 184 30 L 184 96" stroke="#b8593a" stroke-width="2.1"/>
-          <path d="M 88 30 L 88 96 M 110 30 L 110 96 M 154 30 L 154 96 M 170 30 L 170 96" stroke="#b8593a"/>
-          <g transform="translate(131 62)" stroke="#2d251f" stroke-width="1.8">
-            <g transform="translate(0 -9)"><path d="M -7 0 L 7 0"/><path d="M 3 -4 L 7 0 L 3 4"/></g>
-            <g transform="translate(8 5) rotate(120)"><path d="M -7 0 L 7 0"/><path d="M 3 -4 L 7 0 L 3 4"/></g>
-            <g transform="translate(-8 5) rotate(240)"><path d="M -7 0 L 7 0"/><path d="M 3 -4 L 7 0 L 3 4"/></g>
-          </g>
-          <path d="M 184 70 L 196 70 L 196 96 L 184 96"/>
-          <circle cx="50" cy="98" r="9"/>
-          <circle cx="50" cy="98" r="3" stroke-width="1.2"/>
-          <circle cx="120" cy="98" r="9"/>
-          <circle cx="120" cy="98" r="3" stroke-width="1.2"/>
-          <circle cx="148" cy="98" r="9"/>
-          <circle cx="148" cy="98" r="3" stroke-width="1.2"/>
-        </g>
-      </svg>
-    </div>
   </section>
 </div>
 
