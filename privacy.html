@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sopigt — Integritetspolicy</title>
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<meta name="description" content="Sopigts integritetspolicy. Vi samlar inte in några personuppgifter." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Patrick+Hand&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #2d251f;
+    --cream: #f7f0e1;
+    --paper: #fffaf0;
+    --rust: #b8593a;
+    --amber: #d49a55;
+    --green: #7a8650;
+    --muted: #8a7d6e;
+    --divider: #e9dfc8;
+    --font-hand: 'Caveat', 'Patrick Hand', cursive;
+    --font-body: 'Caveat', 'Patrick Hand', cursive;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--rust); text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 4px; }
+  a:hover { color: var(--ink); }
+
+  .page { max-width: 720px; margin: 0 auto; padding: 0 28px; }
+
+  /* nav — match landing page */
+  nav {
+    display: flex; align-items: center; justify-content: center;
+    padding: 28px 0 16px;
+  }
+  .logo {
+    display: flex; align-items: flex-end; gap: 16px;
+    font-family: var(--font-hand); font-weight: 700;
+    line-height: 0.9; letter-spacing: -1;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .logo span:first-child { font-size: clamp(56px, 12vw, 120px); }
+  .logo .logo-bag { width: clamp(42px, 8vw, 80px); height: clamp(50px, 9.5vw, 96px); display: inline-block; transform: rotate(6deg); }
+
+  /* breadcrumb back */
+  .back {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--font-hand); font-size: 24px; font-weight: 700;
+    color: var(--green); text-decoration: none;
+    margin: 16px 0 28px;
+  }
+  .back:hover { color: var(--ink); }
+  .back::before { content: '←'; font-size: 28px; line-height: 1; }
+
+  /* article */
+  article {
+    background: var(--paper);
+    border: 1.5px solid var(--divider);
+    border-radius: 26px;
+    padding: 44px 44px 48px;
+    box-shadow: 0 2px 0 var(--divider), 0 12px 30px rgba(60,40,20,0.06);
+    margin-bottom: 64px;
+  }
+  h1 {
+    font-family: var(--font-hand); font-weight: 700;
+    font-size: clamp(54px, 8vw, 76px); line-height: 0.95; letter-spacing: -1.5px;
+    margin: 0 0 8px; color: var(--ink);
+  }
+  .updated {
+    color: var(--muted); font-size: 18px; font-weight: 500;
+    margin: 0 0 28px;
+  }
+  .divider {
+    height: 14px; margin: 0 0 24px; opacity: 0.45;
+  }
+  article p {
+    color: var(--ink); font-size: 22px; line-height: 1.5;
+    margin: 0 0 22px;
+  }
+  article p:last-child { margin-bottom: 0; }
+  article .contact {
+    margin-top: 32px; padding: 18px 22px;
+    background: var(--cream); border-radius: 16px;
+    border: 1.5px dashed var(--divider);
+    display: flex; align-items: center; gap: 12px;
+    flex-wrap: wrap;
+  }
+  article .contact strong { font-weight: 700; }
+
+  footer {
+    background: var(--ink); color: var(--cream);
+    padding: 28px 0;
+  }
+  footer .copy { font-size: 17px; opacity: 0.6; text-align: center; font-weight: 500; }
+
+  @media (max-width: 560px) {
+    .page { padding: 0 20px; }
+    article { padding: 30px 24px 34px; border-radius: 22px; }
+    article p { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="wobble" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="3" />
+      <feDisplacementMap in="SourceGraphic" scale="1.2" />
+    </filter>
+  </defs>
+</svg>
+
+<div class="page">
+  <nav>
+    <a class="logo" href="index.html">
+      <span>Sopigt</span>
+      <span class="logo-bag">
+        <svg viewBox="0 0 80 92" width="100%" height="100%">
+          <g filter="url(#wobble)" fill="none" stroke="#2d251f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M 30 20 Q 22 12, 26 6 Q 33 3, 37 13" />
+            <path d="M 50 20 Q 58 12, 54 6 Q 47 3, 43 13" />
+            <path d="M 28 20 Q 40 24, 52 20" stroke="#b8593a" stroke-width="3.4" />
+            <path d="M 30 22 Q 18 30, 12 52 Q 9 78, 20 86 Q 40 90, 60 86 Q 71 78, 68 52 Q 62 30, 50 22" />
+            <path d="M 24 34 Q 22 56, 26 82" stroke-width="1.8" />
+            <path d="M 40 32 Q 42 58, 40 86" stroke-width="1.8" />
+            <path d="M 56 34 Q 58 56, 54 82" stroke-width="1.8" />
+          </g>
+        </svg>
+      </span>
+    </a>
+  </nav>
+
+  <a class="back" href="index.html">Tillbaka till start</a>
+
+  <article>
+    <h1>Integritetspolicy</h1>
+    <p class="updated">Senast uppdaterad: 2026-05-24</p>
+
+    <svg class="divider" viewBox="0 0 480 14" preserveAspectRatio="none">
+      <path d="M 4 7 Q 60 2, 120 8 T 240 7 T 360 7 T 476 7" fill="none" stroke="#2d251f" stroke-width="1.5" stroke-linecap="round" filter="url(#wobble)"/>
+    </svg>
+
+    <p>Sopigt samlar inte in några personuppgifter. Appen lagrar din adress lokalt på enheten och skickar den enbart till öppna API:er för att hämta sophämtningsschema.</p>
+
+    <p>Vi delar inte din information med tredje part.</p>
+
+    <p>Prenumerationshantering sker via <a href="https://www.revenuecat.com" target="_blank" rel="noopener">RevenueCat</a> (revenuecat.com). RevenueCat hanterar köpinformation i enlighet med sin egen integritetspolicy.</p>
+
+    <div class="contact">
+      <strong>Kontakt:</strong>
+      <a href="mailto:sopigt.app@gmail.com">sopigt.app@gmail.com</a>
+    </div>
+  </article>
+</div>
+
+<footer>
+  <div class="page">
+    <div class="copy">© 2026 Sopigt AB · <a href="Privacy Policy.html" style="color: inherit; text-decoration: underline; opacity: 1;">Integritetspolicy</a> · Kontakt: <a href="mailto:sopigt.app@gmail.com" style="color: inherit; text-decoration: underline; opacity: 1;">sopigt.app@gmail.com</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
